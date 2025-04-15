@@ -45,7 +45,7 @@ class CalculatorViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "goToResult" {
+        if segue.identifier == "goToResult" && billTextField.text != nil {
             let destinationVC = segue.destination as! ResultsViewController
             
             destinationVC.numberOfPeople = tipBrain.getNumberOfPeople()

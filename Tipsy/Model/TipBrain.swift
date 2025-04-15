@@ -20,7 +20,11 @@ struct TipBrain {
         let buttonTitleAsNumber = Double(buttonTitleMinusPercentSign)!
         let tipPercentageTotal = buttonTitleAsNumber / 100
         
-        tip = Tip(tipPercentage: tipPercentageTotal)
+        tip = Tip(
+            tipPercentage: tipPercentageTotal,
+            numberOfPeople: tip?.numberOfPeople,
+            amountPerPerson: tip?.amountPerPerson
+        )
     }
     
     func getTipPercentage() -> String {
@@ -29,7 +33,11 @@ struct TipBrain {
     }
     
     mutating func setNumberOfPeople(numberOfPeople: Double) {
-        tip = Tip(numberOfPeople: Int(numberOfPeople))
+        tip = Tip(
+            tipPercentage: tip?.tipPercentage,
+            numberOfPeople: Int(numberOfPeople),
+            amountPerPerson: tip?.amountPerPerson
+        )
     }
     
     func getNumberOfPeople() -> String {
@@ -45,8 +53,12 @@ struct TipBrain {
         let tipAmount: Double = billFormatted * tipPercentage
         let totalAmount: Double = billFormatted + tipAmount
         let amountPerPerson: Float = Float(totalAmount) / Float(numberOfPeople)
-        
-        tip = Tip(amountPerPerson: amountPerPerson)
+    
+        tip = Tip(
+            tipPercentage: tip?.tipPercentage,
+            numberOfPeople: tip?.numberOfPeople,
+            amountPerPerson: amountPerPerson
+        )
     }
     
     func getAmountPerPerson() -> String {
